@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bright Minds Academy - Where Learning Comes to Life</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #FF6B6B;
+            --secondary-color: #4ECDC4;
+            --accent-color: #FFE66D;
+            --dark-color: #292F36;
+            --light-color: #F7FFF7;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            color: var(--dark-color);
+            background-color: #f9f9f9;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Fredoka One', cursive;
+            color: var(--primary-color);
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            color: white;
+            padding: 5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Q50,80 0,100 Z" fill="white"/></svg>');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-position: bottom;
+            opacity: 0.8;
+        }
+
+        .program-card {
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .program-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .program-card .card-header {
+            background-color: var(--primary-color);
+            color: white;
+            font-family: 'Fredoka One', cursive;
+            padding: 1rem;
+        }
+
+        .age-badge {
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            border-radius: 20px;
+            padding: 3px 10px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .activity-icon {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .testimonial-author {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .registration-section {
+            background: linear-gradient(135deg, var(--primary-color), #FF8E8E);
+            color: white;
+            padding: 3rem 0;
+            border-radius: 15px;
+        }
+
+        .btn-enroll {
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            font-weight: bold;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-enroll:hover {
+            background-color: #ffdb4d;
+            transform: scale(1.05);
+        }
+
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 3rem 0;
+        }
+
+        .social-icon {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .social-icon:hover {
+            color: var(--accent-color);
+        }
+
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.2;
+        }
+
+        .circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+        }
+
+        .triangle {
+            width: 0;
+            height: 0;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 100px solid var(--secondary-color);
+        }
+
+        .square {
+            width: 80px;
+            height: 80px;
+            background-color: var(--primary-color);
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .navbar-brand {
+            font-family: 'Fredoka One', cursive;
+            color: var(--primary-color) !important;
+            font-size: 1.8rem;
+        }
+
+        .nav-link {
+            color: var(--dark-color);
+            font-weight: 600;
+            margin: 0 10px;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-graduation-cap me-2"></i>Bright Minds
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#programs">Programs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#activities">Activities</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonials">Testimonials</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+                <a href="#register" class="btn btn-enroll ms-lg-3">Enroll Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section text-center">
+        <div class="floating-shapes">
+            <div class="shape circle floating" style="top: 10%; left: 5%; animation-delay: 0s;"></div>
+            <div class="shape triangle floating" style="top: 60%; left: 80%; animation-delay: 2s;"></div>
+            <div class="shape square floating" style="top: 30%; left: 70%; animation-delay: 4s;"></div>
+            <div class="shape circle floating" style="top: 70%; left: 10%; animation-delay: 1s;"></div>
+        </div>
+        <div class="container position-relative">
+            <h1 class="display-3 fw-bold mb-4">Where Learning Comes to Life</h1>
+            <p class="lead fs-3 mb-5">Nurturing young minds through play, exploration, and discovery</p>
+            <a href="#register" class="btn btn-enroll btn-lg px-4 py-2">Start Your Child's Journey</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80"
+                        alt="Children learning" class="img-fluid rounded shadow">
+                </div>
+                <div class="col-lg-6">
+                    <h2 class="mb-4">About Bright Minds Academy</h2>
+                    <p class="lead">We believe every child deserves a joyful, stimulating learning environment that
+                        fosters creativity and curiosity.</p>
+                    <p>Founded in 2010, Bright Minds Academy has been a trusted name in early childhood education. Our
+                        child-centered approach combines the best practices from Montessori, Reggio Emilia, and STEM
+                        education to create a unique learning experience.</p>
+                    <div class="row mt-4">
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex align-items-center">
+                                <div class="bg-primary bg-opacity-10 p-3 rounded-circle me-3">
+                                    <i class="fas fa-child text-primary fs-4"></i>
+                                </div>
+                                <div>
+                                    <h5 class="mb-0">Child-Centered</h5>
+                                    <p class="mb-0 text-muted">Tailored to each child's needs</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex align-items-center">
+                                <div class="bg-primary bg-opacity-10 p-3 rounded-circle me-3">
+                                    <i class="fas fa-heart text-primary fs-4"></i>
+                                </div>
+                                <div>
+                                    <h5 class="mb-0">Caring Staff</h5>
+                                    <p class="mb-0 text-muted">Certified and passionate</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex align-items-center">
+                                <div class="bg-primary bg-opacity-10 p-3 rounded-circle me-3">
+                                    <i class="fas fa-shield-alt text-primary fs-4"></i>
+                                </div>
+                                <div>
+                                    <h5 class="mb-0">Safe Environment</h5>
+                                    <p class="mb-0 text-muted">Secure and nurturing</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex align-items-center">
+                                <div class="bg-primary bg-opacity-10 p-3 rounded-circle me-3">
+                                    <i class="fas fa-star text-primary fs-4"></i>
+                                </div>
+                                <div>
+                                    <h5 class="mb-0">Proven Results</h5>
+                                    <p class="mb-0 text-muted">98% parent satisfaction</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section id="programs" class="py-5 bg-light">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h2>Our Educational Programs</h2>
+                <p class="lead">Designed for different age groups and developmental stages</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="program-card h-100">
+                        <div class="card-header text-center">
+                            <h4 class="mb-0">Toddler Explorers</h4>
+                        </div>
+                        <div class="card-body text-center">
+                            <span class="age-badge">18 months - 3 years</span>
+                            <p class="mt-3">Sensory play, early language development, and motor skills through fun,
+                                interactive activities.</p>
+                            <ul class="list-unstyled text-start">
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Small class sizes
+                                </li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Daily outdoor
+                                    time</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Music & movement
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-footer bg-transparent text-center">
+                            <a href="#register" class="btn btn-sm btn-enroll">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="program-card h-100">
+                        <div class="card-header text-center">
+                            <h4 class="mb-0">Preschool Pioneers</h4>
+                        </div>
+                        <div class="card-body text-center">
+                            <span class="age-badge">3 - 5 years</span>
+                            <p class="mt-3">Building foundational skills in literacy, math, and science through
+                                play-based learning.</p>
+                            <ul class="list-unstyled text-start">
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> STEM activities
+                                </li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Creative arts
+                                </li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Social
+                                    development</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer bg-transparent text-center">
+                            <a href="#register" class="btn btn-sm btn-enroll">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="program-card h-100">
+                        <div class="card-header text-center">
+                            <h4 class="mb-0">Kindergarten Prep</h4>
+                        </div>
+                        <div class="card-body text-center">
+                            <span class="age-badge">4 - 6 years</span>
+                            <p class="mt-3">Comprehensive readiness program focusing on academic and social-emotional
+                                skills.</p>
+                            <ul class="list-unstyled text-start">
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Phonics & reading
+                                </li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Early math
+                                    concepts</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Problem solving
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-footer bg-transparent text-center">
+                            <a href="#register" class="btn btn-sm btn-enroll">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="program-card h-100">
+                        <div class="card-header text-center">
+                            <h4 class="mb-0">After School Club</h4>
+                        </div>
+                        <div class="card-body text-center">
+                            <span class="age-badge">5 - 10 years</span>
+                            <p class="mt-3">Enrichment programs including coding, robotics, art, and foreign languages.
+                            </p>
+                            <ul class="list-unstyled text-start">
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Homework help
+                                </li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Specialized
+                                    workshops</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Fun projects</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer bg-transparent text-center">
+                            <a href="#register" class="btn btn-sm btn-enroll">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Activities Section -->
+    <section id="activities" class="py-5">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h2>Daily Activities</h2>
+                <p class="lead">A typical day at Bright Minds Academy</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4 text-center">
+                    <div class="activity-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h4>Morning Circle</h4>
+                    <p>We start each day with songs, stories, and discussions to build community and language skills.
+                    </p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="activity-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h4>STEM Exploration</h4>
+                    <p>Hands-on science, technology, engineering, and math activities spark curiosity and critical
+                        thinking.</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="activity-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h4>Creative Arts</h4>
+                    <p>Painting, sculpting, and dramatic play encourage self-expression and fine motor development.</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="activity-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h4>Literacy Time</h4>
+                    <p>Interactive read-alouds and phonics activities build early reading and writing skills.</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="activity-icon">
+                        <i class="fas fa-running"></i>
+                    </div>
+                    <h4>Outdoor Play</h4>
+                    <p>Daily outdoor time promotes physical health, social skills, and connection with nature.</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="activity-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h4>Nutrition Breaks</h4>
+                    <p>Healthy snacks and meals teach nutrition while fostering independence and social skills.</p>
+                </div>
+            </div>
+
+            <!-- Video Section -->
+            <div class="row mt-5">
+                <div class="col-lg-8 mx-auto">
+                    <div class="ratio ratio-16x9 rounded shadow overflow-hidden">
+                        <iframe src="https://www.youtube.com/embed/9bZkp7q19f0?rel=0"
+                            title="A Day at Bright Minds Academy" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-5 bg-light">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h2>What Parents Say</h2>
+                <p class="lead">Hear from our Bright Minds families</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="testimonial-card h-100">
+                        <div class="mb-3">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                        </div>
+                        <p>"My daughter has blossomed at Bright Minds. She comes home every day excited to share what
+                            she learned. The teachers truly care about each child's individual growth."</p>
+                        <div class="testimonial-author mt-3">
+                            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah J."
+                                class="rounded-circle me-2" width="40">
+                            Sarah J., Mother of Sophia (4)
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card h-100">
+                        <div class="mb-3">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                        </div>
+                        <p>"The kindergarten prep program gave my son such a strong foundation. He entered kindergarten
+                            reading simple books and confident in his abilities. Worth every penny!"</p>
+                        <div class="testimonial-author mt-3">
+                            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Michael T."
+                                class="rounded-circle me-2" width="40">
+                            Michael T., Father of Ethan (5)
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card h-100">
+                        <div class="mb-3">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                        </div>
+                        <p>"As an educator myself, I'm impressed with the curriculum and teaching methods. My toddler is
+                            developing a love for learning that will last a lifetime."</p>
+                        <div class="testimonial-author mt-3">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Priya K."
+                                class="rounded-circle me-2" width="40">
+                            Priya K., Mother of Aanya (3)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Section -->
+    <section id="register" class="py-5">
+        <div class="container">
+            <div class="registration-section p-4 p-md-5">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 mb-4 mb-lg-0">
+                        <h2 class="mb-3">Ready to Join Our Community?</h2>
+                        <p class="mb-4">Spaces are limited! Schedule a tour or enroll your child today to secure their
+                            spot.</p>
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-phone-alt me-3 fs-4"></i>
+                            <div>
+                                <h5 class="mb-0">Call Us</h5>
+                                <p class="mb-0">(555) 123-4567</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-envelope me-3 fs-4"></i>
+                            <div>
+                                <h5 class="mb-0">Email Us</h5>
+                                <p class="mb-0">info@brightmindsacademy.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="bg-white p-4 rounded shadow">
+                            <h4 class="text-center mb-4" style="color: var(--primary-color);">Enrollment Form</h4>
+                            <form id="enrollmentForm">
+                                <div class="mb-3">
+                                    <label for="parentName" class="form-label">Parent Name</label>
+                                    <input type="text" class="form-control" id="parentName" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="childName" class="form-label">Child Name</label>
+                                    <input type="text" class="form-control" id="childName" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="childAge" class="form-label">Child Age</label>
+                                    <input type="number" class="form-control" id="childAge" min="1" max="10" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="program" class="form-label">Program Interest</label>
+                                    <select class="form-select" id="program" required>
+                                        <option value="" selected disabled>Select a program</option>
+                                        <option value="Toddler Explorers">Toddler Explorers</option>
+                                        <option value="Preschool Pioneers">Preschool Pioneers</option>
+                                        <option value="Kindergarten Prep">Kindergarten Prep</option>
+                                        <option value="After School Club">After School Club</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="phone" class="form-label">Phone</label>
+                                    <input type="tel" class="form-control" id="phone" required>
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-enroll">Submit Application</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <h3 class="mb-4">Contact Us</h3>
+                    <div class="mb-4">
+                        <h5><i class="fas fa-map-marker-alt me-2"></i> Address</h5>
+                        <p>123 Learning Lane<br>Education City, EC 12345</p>
+                    </div>
+                    <div class="mb-4">
+                        <h5><i class="fas fa-clock me-2"></i> Hours</h5>
+                        <p>Monday - Friday: 7:30 AM - 6:00 PM<br>
+                            Saturday: 9:00 AM - 12:00 PM (Special Programs)<br>
+                            Sunday: Closed</p>
+                    </div>
+                    <div>
+                        <h5><i class="fas fa-phone-alt me-2"></i> Phone</h5>
+                        <p>(555) 123-4567</p>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="ratio ratio-16x9 rounded overflow-hidden shadow">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.215373510518!2d-73.9878449241646!3d40.74844097138986!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1689876423593!5m2!1sen!2sus"
+                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h3 class="mb-3"><i class="fas fa-graduation-cap me-2"></i>Bright Minds</h3>
+                    <p>Providing exceptional early childhood education since 2010. Our mission is to inspire a lifelong
+                        love of learning in every child.</p>
+                </div>
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h4 class="mb-3">Quick Links</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#about" class="text-white text-decoration-none">About Us</a></li>
+                        <li class="mb-2"><a href="#programs" class="text-white text-decoration-none">Programs</a></li>
+                        <li class="mb-2"><a href="#activities" class="text-white text-decoration-none">Activities</a>
+                        </li>
+                        <li class="mb-2"><a href="#testimonials"
+                                class="text-white text-decoration-none">Testimonials</a></li>
+                        <li class="mb-2"><a href="#contact" class="text-white text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h4 class="mb-3">Connect With Us</h4>
+                    <div class="mb-4">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                    <p>Subscribe to our newsletter for updates and parenting tips:</p>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Your email">
+                        <button class="btn btn-enroll" type="button">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4 bg-light">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2023 Bright Minds Academy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script>
+        // Form submission handler
+        document.getElementById('enrollmentForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Get form values
+            const parentName = document.getElementById('parentName').value;
+            const childName = document.getElementById('childName').value;
+
+            // Show success message
+            alert(`Thank you, ${parentName}! We've received your application for ${childName}. Our team will contact you shortly to complete the enrollment process.`);
+
+            // Reset form
+            this.reset();
+
+            // Scroll to top
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add floating shapes dynamically
+        function createFloatingShapes() {
+            const container = document.querySelector('.floating-shapes');
+            const shapes = ['circle', 'triangle', 'square'];
+            const colors = ['#FF6B6B', '#4ECDC4', '#FFE66D'];
+
+            for (let i = 0; i < 10; i++) {
+                const shape = document.createElement('div');
+                const randomShape = shapes[Math.floor(Math.random() * shapes.length)];
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+
+                shape.className = `shape ${randomShape} floating`;
+                shape.style.backgroundColor = randomShape === 'circle' || randomShape === 'square' ? randomColor : 'transparent';
+                shape.style.borderBottom = randomShape === 'triangle' ? `100px solid ${randomColor}` : 'none';
+                shape.style.width = randomShape === 'circle' ? `${Math.random() * 100 + 50}px` :
+                    randomShape === 'triangle' ? '0' : `${Math.random() * 80 + 40}px`;
+                shape.style.height = randomShape === 'circle' ? shape.style.width :
+                    randomShape === 'triangle' ? '0' : shape.style.width;
+                shape.style.left = `${Math.random() * 100}%`;
+                shape.style.top = `${Math.random() * 100}%`;
+                shape.style.opacity = Math.random() * 0.3 + 0.1;
+                shape.style.animationDelay = `${Math.random() * 6}s`;
+
+                container.appendChild(shape);
+            }
+        }
+
+        // Call the function when the page loads
+        window.addEventListener('load', createFloatingShapes);
+    </script>
+</body>
+
+</html>
